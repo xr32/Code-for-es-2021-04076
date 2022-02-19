@@ -176,7 +176,7 @@ tune_bpnn <- tune_hyper()
 
 # validation
 lrn <- makePreprocWrapperCaret(makeLearner(cl = "regr.nnet", id = "Ozone.bpnn", par.vals = c(tune_bpnn$x)), ppc.center = TRUE, ppc.scale = TRUE)  # learner with optimized hyperparameter
-cv_svr <- target_valid()
+cv_bpnn <- target_valid()
 
 
 ##### dnn #####
@@ -195,7 +195,7 @@ ps <- makeParamSet(  # searching space
   makeDiscreteParam(id = "rate", values = c(0.005))
 )
 ctrl <- makeTuneControlGrid()  # grid search
-tune_bpnn <- tune_hyper()
+tune_dnn <- tune_hyper()
 
 # validation
 lrn <- makePreprocWrapperCaret(makeLearner(cl = "regr.h2o.deeplearning", id = "Ozone.dnn"), ppc.center = TRUE, ppc.scale =TRUE)
